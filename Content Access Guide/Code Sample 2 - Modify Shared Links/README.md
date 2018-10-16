@@ -1,4 +1,4 @@
-#Code Sample: Shared link modification
+# Code Sample: Shared link modification
 
 Sometimes we may need to limit access to certain content. Shared links can have many different policies applied to limit access, one of which is an expiration date. For this code sample, we have been tasked with collecting all of the shared links for a user, and adding an expiration to any file-based links that will remove the links 30 days from now. Using the Python SDK, let’s build a script to solve this scenario.
 
