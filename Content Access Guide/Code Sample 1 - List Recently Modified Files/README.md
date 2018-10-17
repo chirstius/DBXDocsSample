@@ -29,7 +29,7 @@ def process_folder_entries(current_state, entries):
             current_state.pop(entry.path_lower, None) # ignore KeyError if missing
     return current_state
 
- dbx = dropbox.Dropbox(<ACCESS TOKEN>)
+dbx = dropbox.Dropbox(<ACCESS TOKEN>)
 
 # Build a list of all files from the Dropbox root
 print("Scanning for files...")
@@ -64,7 +64,7 @@ def process_folder_entries(current_state, entries):
             current_state.pop(entry.path_lower, None) # ignore KeyError if missing
     return current_state
 
- dbx = dropbox.Dropbox(<ACCESS TOKEN>)
+dbx = dropbox.Dropbox(<ACCESS TOKEN>)
 
 # Build a list of all files from the Dropbox root
 print("Scanning for files...")
