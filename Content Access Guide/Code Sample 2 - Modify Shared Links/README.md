@@ -4,16 +4,17 @@ Sometimes we may need to limit access to certain content. Shared links can have 
 
 To begin, we need to build a list of all shared links for our user:
 
+```python
+import dropbox
 
-    import dropbox
-    
-    dbx = dropbox.Dropbox(<ACCESS TOKEN>)
-    # Collect all shared links for our user
-    result = dbx.sharing_list_shared_links()
-    shared_links = result.links
-    while result.has_more:
-        result = dbx.sharing_list_shared_links(cursor=result.cursor)
-        shared_links.extend(result.links)
+dbx = dropbox.Dropbox(<ACCESS TOKEN>)
+# Collect all shared links for our user
+result = dbx.sharing_list_shared_links()
+shared_links = result.links
+while result.has_more:
+	result = dbx.sharing_list_shared_links(cursor=result.cursor)
+	shared_links.extend(result.links)
+```
 
 Once we’ve assembled this list we need to filter for only `FileLinkMetadata` instances which have no expiration configured. We can perform this check as follows:
 
