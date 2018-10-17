@@ -22,7 +22,7 @@ while result.cursor:
     shared_folders.extend(result.entries)
 ```
 
-After collecting all shared folders, we can collect information on everyone who has access to them by making calls to `sharing/list_folder_members` and `sharing/list_folder_members_continue`. The response from these endpoints can be seen the [HTTP reference documentation](https://www.dropbox.com/developers/documentation/http/documentation#sharing-list_folder_members).
+After collecting all shared folders, we can collect information on everyone who has access to them by making calls to `sharing/list_folder_members` and `sharing/list_folder_members_continue`. The response from these endpoints can be seen in the [HTTP reference documentation](https://www.dropbox.com/developers/documentation/http/documentation#sharing-list_folder_members).
 
 We can call these endpoints as follows:
 
