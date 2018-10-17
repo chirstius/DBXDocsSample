@@ -22,65 +22,8 @@ while result.cursor:
     shared_folders.extend(result.entries)
 ```
 
-After collecting all shared folders, we can collect information on everyone who has access to them by making calls to `sharing/list_folder_members` and `sharing/list_folder_members_continue`. These endpoints return output such as:
+After collecting all shared folders, we can collect information on everyone who has access to them by making calls to `sharing/list_folder_members` and `sharing/list_folder_members_continue`. The response from these endpoints can be seen the [HTTP reference documentation](https://www.dropbox.com/developers/documentation/http/documentation#sharing-list_folder_members).
 
-```json
-{
-    "users": [
-        {
-            "access_type": {
-                ".tag": "owner"
-            },
-            "user": {
-                "account_id": "dbid:AAH4f99T0taONIb-OurWxbNQ6ywGRopQngc",
-                "email": "bob@example.com",
-                "display_name": "Robert Smith",
-                "same_team": true,
-                "team_member_id": "dbmid:abcd1234"
-            },
-            "permissions": [],
-            "is_inherited": false
-        }
-    ],
-    "groups": [
-        {
-            "access_type": {
-                ".tag": "editor"
-            },
-            "group": {
-                "group_name": "Test group",
-                "group_id": "g:e2db7665347abcd600000000001a2b3c",
-                "group_management_type": {
-                    ".tag": "user_managed"
-                },
-                "group_type": {
-                    ".tag": "user_managed"
-                },
-                "is_member": false,
-                "is_owner": false,
-                "same_team": true,
-                "member_count": 10
-            },
-            "permissions": [],
-            "is_inherited": false
-        }
-    ],
-    "invitees": [
-        {
-            "access_type": {
-                ".tag": "viewer"
-            },
-            "invitee": {
-                ".tag": "email",
-                "email": "jessica@example.com"
-            },
-            "permissions": [],
-            "is_inherited": false
-        }
-    ],
-    "cursor": "ZtkX9_EHj3x7PMkVuFIhwKYXEpwpLwyxp9vMKomUhllil9q7eWiAu"
-}
-```
 We can call these endpoints as follows:
 
 ```python
@@ -93,7 +36,7 @@ for folder in shared_folders:
         folder_members.extend(result.users)
 ```
 
-This will collect all member information for each shared folder in the `folder_members` variable. Now we can begin filtering for external entities in our folder membership…
+This will collect all member information for each shared folder in the `folder_members` variable. Now we can begin filtering for external entities in our folder membership:
 
 ```python
 for user in folder_members:
