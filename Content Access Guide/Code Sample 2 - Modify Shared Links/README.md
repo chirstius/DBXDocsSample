@@ -1,6 +1,6 @@
 # Code Sample: Shared link modification
 
-Sometimes we may need to limit access to certain content. Shared links can have many different policies applied to limit access, one of which is an expiration date. For this code sample, we have been tasked with collecting all of the shared links for a user, and adding an expiration to any file-based links that will remove the links 30 days from now. Using the Python SDK, let�s build a script to solve this scenario.
+Sometimes we may need to limit access to certain content. Shared links can have many different policies applied to limit access, one of which is an expiration date. For this code sample, we have been tasked with collecting all of the shared links for a user, and adding an expiration to any file-based links that will remove the links 30 days from now. Using the Python SDK, let's build a script to solve this scenario.
 
 To begin, we need to build a list of all shared links for our user:
 
@@ -16,7 +16,7 @@ while result.has_more:
 	shared_links.extend(result.links)
 ```
 
-Once we�ve assembled this list we need to filter for only `FileLinkMetadata` instances which have no expiration configured. We can perform this check as follows:
+Once we've assembled this list we need to filter for only `FileLinkMetadata` instances which have no expiration configured. We can perform this check as follows:
 
 ```python
 for link in shared_links:
