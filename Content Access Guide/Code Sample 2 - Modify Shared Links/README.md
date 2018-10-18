@@ -34,12 +34,14 @@ for link in shared_links:
 After identifying file-based links with no expiration, we can use `/sharing/modify_shared_link_settings` to add an expiration to these links. Note that shared link expirations are not supported on Basic (free) accounts, so we need to add some exception handling to deal with instances where we might try to modify links that don’t support the parameters we’re trying to change. We’ll also trap for invalid shared link settings:
 
 ```python
+from dropbox.sharing import SharedLinkSettings
+from dropbox.exceptions import ApiError
 import datetime
 ...
 if isinstance(link, dropbox.sharing.FileLinkMetadata) and link.expires is None:
         # create updated link settings to add an expiration 30 days from now
         expires = datetime.datetime.now() + datetime.timedelta(days=30)
-        link_settings = SharedLinkSettings(expires=expires, requested_visibility=RequestedVisibility.password)
+        link_settings = SharedLinkSettings(expires=expires)
         # modify the link to add the expiration date
         try:
             link = dbx.sharing_modify_shared_link_settings(link.url, settings=link_settings)
@@ -56,6 +58,8 @@ And our completed script would look like this:
 
 ```python
 import dropbox
+from dropbox.sharing import SharedLinkSettings
+from dropbox.exceptions import ApiError
 import datetime
 
 dbx = dropbox.Dropbox(<ACCESS TOKEN>)
@@ -71,7 +75,7 @@ for link in shared_links:
     if isinstance(link, dropbox.sharing.FileLinkMetadata) and link.expires is None:
         # create updated link settings to add an expiration 30 days from now
         expires = datetime.datetime.now() + datetime.timedelta(days=30)
-        link_settings = SharedLinkSettings(expires=expires, requested_visibility=RequestedVisibility.password)
+        link_settings = SharedLinkSettings(expires=expires)
         # modify the link to add the expiration date
         try:
             link = dbx.sharing_modify_shared_link_settings(link.url, settings=link_settings)
