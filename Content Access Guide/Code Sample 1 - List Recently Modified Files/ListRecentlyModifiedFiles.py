@@ -8,7 +8,7 @@ def process_folder_entries(current_state, entries):
             current_state.pop(entry.path_lower, None) # ignore KeyError if missing
     return current_state
 
-dbx = dropbox.Dropbox("<ACCEWSS TOKEN>")
+dbx = dropbox.Dropbox("<ACCESS TOKEN>")
 
 ### Build a list of files from a given path - ignoring folders
 print("Scanning for files...")
