@@ -33,6 +33,8 @@ while result.has_more:
     files = process_entries(files, result.entries)
 
 for entry in files.values():
+    # Folders can have various ACLs in place that may limit access. Check the
+    # ACLs before attempting to directly access content within a given folder
     if isinstance(entry, dropbox.files.FolderMetadata) and entry.sharing_info:
         print("{} (Read Only: {}, Traverse Only: {}, No Access: {})"
             .format(
@@ -43,4 +45,4 @@ for entry in files.values():
             )
         )
     else:
-        print(entry.path_lower)
+        print(entry.path_dislpay)
